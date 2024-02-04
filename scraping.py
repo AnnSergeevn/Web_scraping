@@ -85,11 +85,15 @@ header_dict = {}
 item_dict = []
 what_search = "Python"
 for item in vacancy_data:
-     pattern = f".*{what_search}."
+     pattern = r"Python+"
      key_world_header = re.search(pattern, item["header"])
+     pattern_world1_desc = r"Django+"
+     pattern_world2_desc = r"Flask+"
      key_world_description = re.search(pattern, item["text"])
-     print(key_world_header, key_world_description)
-     if key_world_header != None or key_world_description != None:
+     key_world_description_1 = re.search(pattern_world1_desc, item["text"])
+     key_world_description_2 = re.search(pattern_world2_desc, item["text"])
+     #print(key_world_header, key_world_description)
+     if key_world_header != None or (key_world_description != None and key_world_description_1 != None and key_world_description_2 != None):
         if item["city"] == "Санкт-Петербург" or item["city"] == "Москва":
             item_dict.append(item)
 header_dict["vacation"] = item_dict
